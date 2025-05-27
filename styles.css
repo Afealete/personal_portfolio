@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
+body{
+    margin: 0;
+    background-color: chocolate;
+    padding: 3%;
+    overflow: hidden;
+}
+.navbar{
+    position: fixed;
+    bottom: 2rem;
+    left: 30%;
+    width: 40rem;
+    transform: translateX(50);
+    border-radius: 5rem;
+    padding: 2rem 0;
+    background-color: brown;
+    z-index: 100;
+
+}
+
+.navbar .nav-item {
+    display: flex;
+    justify-content: space-evenly;
+}
+.navbar .nav-item li{
+    position: relative;
+    display: flex;
+    cursor: pointer;
+}
+.navbar .nav-item li :hover{
+    color: beige;
+}
+.tooltip{
+    visibility: hidden;
+}
+.cv-btn{
+    padding: 1%;
+    border-radius: 5rem;
+    width:max-content;
+    background-color: rgb(0, 0, 0, 0.2);
+}
+.info-btn{
+    padding: 1%;
+    border-radius: 5rem;
+    width:max-content;
+    background-color: rgb(0, 0, 0, 0.2);
+}
+i{
+    font-size: 2rem;
+    color: beige;
+}
+.container{
+    width: 100vw;
+    height: 100px;
+    perspective: 1500px;
+    perspective-origin: 50%;
+}
+.about-image,
+.image-wrapper{
+    background-color: black;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+}
+.section.about,
+.section.home{
+    display: flex;
+    position: absolute;
+    padding: 0 10%;
+}
+.home{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
