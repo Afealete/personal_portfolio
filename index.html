@@ -10,39 +10,22 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <ul class="nav-item">
-            <li>
-                <a href="#home-page">
-                    <i class="bx bx-home"></i>
-                    <span class="tooltip">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="#about-page">
-                    <i class="bx bx-user"></i>
-                    <span class="tooltip">About</span>
-                </a>
-            </li>
-            <li>
-                <a href="#resume-page">
-                    <i class="bx bx-file-detail"></i>
-                    <span class="tooltip">Resume</span>
-                </a>
-            </li>
-            <li>
-                <a href="#portfolio-page">
-                    <i class="bx bx-briefcase"></i>
-                    <span class="tooltip">Portfolio</span>
-                </a>
-            </li>
-            <li>
-                <a href="#contact-page">
-                    <i class="bx bx-envelope"></i>
-                    <span class="tooltip">Contact</span>
-                </a>
-            </li>
-        </ul>
+    <nav class="navbar" role="navigation">
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
+        <div class="nav-brand">
+            <span>Emmanuel</span>
+        </div>
+        <div class="nav-menu">
+            <ul class="nav-item">
+                <li><a href="#home-page"><i class="bx bx-home"></i>Home</a></li>
+                <li><a href="#about-page"><i class="bx bx-user"></i>About</a></li>
+                <li><a href="#resume-page"><i class="bx bx-file"></i>Resume</a></li>
+                <li><a href="#portfolio-page"><i class="bx bx-briefcase"></i>Portfolio</a></li>
+                <li><a href="#contact-page"><i class="bx bx-envelope"></i>Contact</a></li>
+            </ul>
+        </div>
     </nav>
     <div class="container" id="home-page">
         <section class="section home">
@@ -78,10 +61,7 @@
                 <h3>Emmanuel Doe-Afealete</h3>
                 <h4>Web Developer & Machine Learning Engineer</h4>
                 <p>
-                    I am a passionate web developer with experience in building modern, responsive websites and web
-                    applications. I enjoy turning complex problems into simple, beautiful, and intuitive designs. My
-                    focus is on creating seamless user experiences using the latest technologies.
-                </p>
+                    Am a motivated and detail-oriented student pursuing a degree in Computer Science and Engineering, I possess a robust foundation in software development and machine learning. My experience is rooted in academic projects, internship projects and leadership roles, showcasing a proven ability to adapt swiftly, master new technologies, and deliver effective solutions. I am eager to bring my technical expertise and problem solving capabilities to a dynamic engineering or technology-focused organization, where I can contribute meaningfully and continue to grow professionally. 
                 <ul class="about-details">
                     <li><strong>Email:</strong> doeemmanuel948@gmail.com</li>
                     <li><strong>Location:</strong> Takoradi, Ghana</li>
@@ -103,6 +83,11 @@
                         <h3>Bachelor of Science in Computer Science & Engineering</h3>
                         <span class="resume-date">2024 - 2027</span>
                         <p>University of Mines and Technology, Tarkwa</p>
+                    </div>
+                    <div class="resume-item">
+                        <h3>Machine Learning and AI</h3>
+                        <span class="resume-date">March - June,2025</span>
+                        <p>Thrive Africa, Remote</p>
                     </div>
                     <div class="resume-item">
                         <h3>High School Diploma</h3>
@@ -164,11 +149,11 @@
                     <img src="images/project2.jpg" alt="Project 2">
                     <div class="portfolio-info">
                         <h3>Bank Fraud Detection System </h3>
-                        <p>Spearheaded a team of 11 engineers in crafting a 
-cutting-edge Hybrid Machine Learning model, 
-integrating both supervised and unsupervised 
-techniques, enhanced with fairness and explainability 
-tools. . Highlight the tech stack or your role.</p>
+                        <p>Spearheaded a team of 11 engineers in crafting a
+                            cutting-edge Hybrid Machine Learning model,
+                            integrating both supervised and unsupervised
+                            techniques, enhanced with fairness and explainability
+                            tools. . Highlight the tech stack or your role.</p>
                         <a href="#" target="_blank" class="portfolio-link">View Project</a>
                     </div>
                 </div>
@@ -221,6 +206,46 @@ tools. . Highlight the tech stack or your role.</p>
         </section>
     </div>
     <script src="scripts.js"></script>
+    <div class="nav-backdrop" aria-hidden="true"></div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Emmanuel Doe-Afealete</h3>
+                <p>Web Developer & Machine Learning Enthusiast</p>
+                <div class="social-links">
+                    <a href="https://github.com/yourusername" target="blank" rel="noopener">
+                        <i class='bx bxl-github'></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">
+                        <i class='bx bxl-linkedin'></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">
+                        <i class='bx bxl-twitter'></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home-page">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="contact-info">
+                    <li><i class='bx bx-envelope'></i> hello@example.com</li>
+                    <li><i class='bx bx-phone'></i> +1 234 567 890</li>
+                    <li><i class='bx bx-map'></i> New York, USA</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Emmanuel Doe-Afealete. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
