@@ -3,17 +3,23 @@
     'use strict';
 
     const navLinks = Array.from(document.querySelectorAll('.navbar .nav-item li a'));
+    const mobileNavLinks = Array.from(document.querySelectorAll('.mobile-nav-link'));
+    const allNavLinks = [...navLinks, ...mobileNavLinks];
     const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 
     // Smooth scroll for internal links
-    navLinks.forEach(link => {
+    allNavLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if (!targetId || !targetId.startsWith('#')) return;
             e.preventDefault();
             const target = document.querySelector(targetId);
             if (!target) return;
-            const yOffset = -16; // small offset for fixed top nav
+
+            // Account for different nav heights
+            const isMobile = window.innerWidth <= 768;
+            const navHeight = isMobile ? 80 : 70; // mobile nav height vs desktop nav height
+            const yOffset = -16 - navHeight;
             const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
         });
@@ -29,10 +35,20 @@
             if (scrollPos >= top) currentIndex = i;
         });
 
+        // Update desktop nav
         navLinks.forEach((link, i) => {
             const li = link.closest('li');
             if (!li) return;
             if (i === currentIndex) li.classList.add('active'); else li.classList.remove('active');
+        });
+
+        // Update mobile nav
+        mobileNavLinks.forEach((link, i) => {
+            if (i === currentIndex) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
         });
     }
 
@@ -42,4 +58,76 @@
     // Keyboard accessibility - focus outlines for nav links
     navLinks.forEach(link => link.addEventListener('focus', () => link.classList.add('focus')));
     navLinks.forEach(link => link.addEventListener('blur', () => link.classList.remove('focus')));
+})();
+
+// Theme switching functionality
+(function () {
+    'use strict';
+
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const html = document.documentElement;
+    const icon = themeSwitcher.querySelector('i');
+
+    // Get saved theme or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    function updateThemeIcon(theme) {
+        if (theme === 'light') {
+            icon.className = 'bx bx-sun';
+        } else {
+            icon.className = 'bx bx-moon';
+        }
+    }
+
+    function toggleTheme() {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        // Add a smooth transition with a ripple effect
+        const ripple = document.createElement('div');
+        ripple.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, ${newTheme === 'light' ? 'rgba(255, 140, 0, 0.3)' : 'rgba(255, 140, 0, 0.2)'}, transparent);
+            z-index: 9999;
+            pointer-events: none;
+            transition: all 0.8s ease-out;
+        `;
+        document.body.appendChild(ripple);
+
+        // Trigger the ripple animation
+        setTimeout(() => {
+            ripple.style.width = '200vw';
+            ripple.style.height = '200vw';
+        }, 10);
+
+        // Apply theme change
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+
+        // Add transition effect to body
+        document.body.style.transition = 'background-color 0.6s ease, color 0.6s ease';
+
+        // Remove ripple after animation
+        setTimeout(() => {
+            ripple.remove();
+            document.body.style.transition = '';
+        }, 800);
+
+        // Add a subtle shake effect to the theme switcher
+        themeSwitcher.style.animation = 'shake 0.5s ease-in-out';
+        setTimeout(() => {
+            themeSwitcher.style.animation = '';
+        }, 500);
+    }
+
+    themeSwitcher.addEventListener('click', toggleTheme);
 })();
