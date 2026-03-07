@@ -65,8 +65,10 @@
     'use strict';
 
     const themeSwitcher = document.getElementById('theme-switcher');
+    const themeSwitcherMobile = document.getElementById('theme-switcher-mobile');
     const html = document.documentElement;
-    const icon = themeSwitcher.querySelector('i');
+    const icon = themeSwitcher ? themeSwitcher.querySelector('i') : null;
+    const iconMobile = themeSwitcherMobile ? themeSwitcherMobile.querySelector('i') : null;
 
     // Get saved theme or default to dark
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -74,11 +76,9 @@
     updateThemeIcon(savedTheme);
 
     function updateThemeIcon(theme) {
-        if (theme === 'light') {
-            icon.className = 'bx bx-sun';
-        } else {
-            icon.className = 'bx bx-moon';
-        }
+        const iconClass = theme === 'light' ? 'bx bx-sun' : 'bx bx-moon';
+        if (icon) icon.className = iconClass;
+        if (iconMobile) iconMobile.className = iconClass;
     }
 
     function toggleTheme() {
@@ -122,12 +122,21 @@
             document.body.style.transition = '';
         }, 800);
 
-        // Add a subtle shake effect to the theme switcher
-        themeSwitcher.style.animation = 'shake 0.5s ease-in-out';
-        setTimeout(() => {
-            themeSwitcher.style.animation = '';
-        }, 500);
+        // Add a subtle shake effect to the theme switchers
+        if (themeSwitcher) {
+            themeSwitcher.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => {
+                themeSwitcher.style.animation = '';
+            }, 500);
+        }
+        if (themeSwitcherMobile) {
+            themeSwitcherMobile.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => {
+                themeSwitcherMobile.style.animation = '';
+            }, 500);
+        }
     }
 
-    themeSwitcher.addEventListener('click', toggleTheme);
+    if (themeSwitcher) themeSwitcher.addEventListener('click', toggleTheme);
+    if (themeSwitcherMobile) themeSwitcherMobile.addEventListener('click', toggleTheme);
 })();
