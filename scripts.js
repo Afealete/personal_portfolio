@@ -3,22 +3,40 @@
     'use strict';
 
     const navLinks = Array.from(document.querySelectorAll('.navbar .nav-item li a'));
-    const mobileNavLinks = Array.from(document.querySelectorAll('.mobile-nav-link'));
-    const allNavLinks = [...navLinks, ...mobileNavLinks];
+    const mobileMenuLinks = Array.from(document.querySelectorAll('.mobile-menu-link'));
+    const allNavLinks = [...navLinks, ...mobileMenuLinks];
     const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-    // Smooth scroll for internal links
+    // Hamburger menu toggle
+    if (hamburgerMenu) {
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+    }
+
+    // Close mobile menu when clicking a link
     allNavLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if (!targetId || !targetId.startsWith('#')) return;
             e.preventDefault();
+            
+            // Close hamburger and mobile menu
+            if (hamburgerMenu) {
+                hamburgerMenu.classList.remove('active');
+            }
+            if (mobileMenu) {
+                mobileMenu.classList.remove('active');
+            }
+
             const target = document.querySelector(targetId);
             if (!target) return;
 
-            // Account for different nav heights
-            const isMobile = window.innerWidth <= 768;
-            const navHeight = isMobile ? 80 : 70; // mobile nav height vs desktop nav height
+            // Account for navbar height
+            const navHeight = 70;
             const yOffset = -16 - navHeight;
             const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
@@ -42,8 +60,8 @@
             if (i === currentIndex) li.classList.add('active'); else li.classList.remove('active');
         });
 
-        // Update mobile nav
-        mobileNavLinks.forEach((link, i) => {
+        // Update mobile menu
+        mobileMenuLinks.forEach((link, i) => {
             if (i === currentIndex) {
                 link.classList.add('active');
             } else {
@@ -65,10 +83,8 @@
     'use strict';
 
     const themeSwitcher = document.getElementById('theme-switcher');
-    const themeSwitcherMobile = document.getElementById('theme-switcher-mobile');
     const html = document.documentElement;
     const icon = themeSwitcher ? themeSwitcher.querySelector('i') : null;
-    const iconMobile = themeSwitcherMobile ? themeSwitcherMobile.querySelector('i') : null;
 
     // Get saved theme or default to dark
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -76,9 +92,9 @@
     updateThemeIcon(savedTheme);
 
     function updateThemeIcon(theme) {
-        const iconClass = theme === 'light' ? 'bx bx-sun' : 'bx bx-moon';
-        if (icon) icon.className = iconClass;
-        if (iconMobile) iconMobile.className = iconClass;
+        if (icon) {
+            icon.className = theme === 'light' ? 'bx bx-sun' : 'bx bx-moon';
+        }
     }
 
     function toggleTheme() {
@@ -122,21 +138,14 @@
             document.body.style.transition = '';
         }, 800);
 
-        // Add a subtle shake effect to the theme switchers
+        // Add a subtle shake effect to the theme switcher
         if (themeSwitcher) {
             themeSwitcher.style.animation = 'shake 0.5s ease-in-out';
             setTimeout(() => {
                 themeSwitcher.style.animation = '';
             }, 500);
         }
-        if (themeSwitcherMobile) {
-            themeSwitcherMobile.style.animation = 'shake 0.5s ease-in-out';
-            setTimeout(() => {
-                themeSwitcherMobile.style.animation = '';
-            }, 500);
-        }
     }
 
     if (themeSwitcher) themeSwitcher.addEventListener('click', toggleTheme);
-    if (themeSwitcherMobile) themeSwitcherMobile.addEventListener('click', toggleTheme);
 })();

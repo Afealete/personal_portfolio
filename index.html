@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar" role="navigation">
         <div class="nav-brand">
-            <span>ED-A</span>
+            <span>ED</span>
         </div>
         <div class="nav-menu">
             <ul class="nav-item">
@@ -23,28 +23,30 @@
                 <li><a href="#contact-page"><i class="bx bx-envelope"></i>Contact</a></li>
             </ul>
         </div>
-        <div class="theme-toggle">
-            <button id="theme-switcher" aria-label="Toggle theme">
-                <i class="bx bx-moon"></i>
+        <div class="nav-right">
+            <div class="theme-toggle">
+                <button id="theme-switcher" aria-label="Toggle theme">
+                    <i class="bx bx-moon"></i>
+                </button>
+            </div>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </nav>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-nav" role="navigation">
-        <ul class="mobile-nav-list">
-            <li><a href="#home-page" class="mobile-nav-link active"><i class="bx bx-home"></i><span>Home</span></a></li>
-            <li><a href="#about-page" class="mobile-nav-link"><i class="bx bx-user"></i><span>About</span></a></li>
-            <li><a href="#resume-page" class="mobile-nav-link"><i class="bx bx-file"></i><span>Resume</span></a></li>
-            <li><a href="#portfolio-page" class="mobile-nav-link"><i class="bx bx-briefcase"></i><span>Portfolio</span></a></li>
-            <li><a href="#contact-page" class="mobile-nav-link"><i class="bx bx-envelope"></i><span>Contact</span></a></li>
-            <li class="theme-mobile-item">
-                <button id="theme-switcher-mobile" aria-label="Toggle theme">
-                    <i class="bx bx-moon"></i>
-                </button>
-            </li>
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li><a href="#home-page" class="mobile-menu-link active"><i class="bx bx-home"></i>Home</a></li>
+            <li><a href="#about-page" class="mobile-menu-link"><i class="bx bx-user"></i>About</a></li>
+            <li><a href="#resume-page" class="mobile-menu-link"><i class="bx bx-file"></i>Resume</a></li>
+            <li><a href="#portfolio-page" class="mobile-menu-link"><i class="bx bx-briefcase"></i>Portfolio</a></li>
+            <li><a href="#contact-page" class="mobile-menu-link"><i class="bx bx-envelope"></i>Contact</a></li>
         </ul>
-    </nav>
+    </div>
     <div class="container" id="home-page">
         <section class="section home">
             <div class="home-info">
@@ -65,14 +67,14 @@
 
             </div>
             <div class="image-wrapper">
-                <img src="me.jpg" alt="profile image">
+                <img src="images/me.jpg" alt="profile image">
             </div>
         </section>
     </div>
     <div class="container" id="about-page">
         <section class="section about">
             <div class="about-image">
-                <img src="me.jpg" alt="profile image">
+                <img src="images/me.jpg" alt="profile image">
             </div>
             <div class="about-info">
                 <h1>About Me</h1>
@@ -192,57 +194,59 @@
         <section class="section portfolio">
             <h1>My Portfolio</h1>
             <div class="portfolio-grid">
-                <div class="portfolio-card">
-                    <img src="images/project3.jpg" alt="Bihar wedding platform ">
-                    <div class="portfolio-info">
-                        <h3>Eventra-Bihar</h3>
-                        <p>Developed</p>
-                        <a href="#" target="_blank" class="portfolio-link">View Project</a>
+                <a href="https://eventra-bihar.vercel.app" target="_blank" class="portfolio-link-card">
+                    <div class="portfolio-card">
+                        <img src="images/eventra.png" alt="Bihar wedding platform ">
+                        <div class="portfolio-info">
+                            <h3>Eventra-Bihar</h3>
+                            <p>Developed</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-card">
-                    <img src="images/project1.jpg" alt="Rise up Foundation Website">
-                    <div class="portfolio-info">
-                        <h3>Rise-Up Empowerment Foundation </h3>
-                        <p>Developed a website for . Highlight the tech stack or your role.</p>
-                        <a href="#" target="_blank" class="portfolio-link">View Project</a>
+                </a>
+                <a href="https://afealete.github.io/RiseUp-Empower-Empowerment-Foundation/" target="_blank" class="portfolio-link-card">
+                    <div class="portfolio-card">
+                        <img src="images/riseup.png" alt="Rise up Foundation Website">
+                        <div class="portfolio-info">
+                            <h3>Rise-Up Empowerment Foundation </h3>
+                            <p>Developed a website for . Highlight the tech stack or your role.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-card">
-                    <img src="images/project2.jpg" alt="Fraud detection system">
-                    <div class="portfolio-info">
-                        <h3>Bank Fraud Detection System </h3>
-                        <p>Spearheaded a team of 11 in crafting a
-                            cutting-edge Hybrid Machine Learning model,
-                            integrating both supervised and unsupervised
-                            techniques, enhanced with fairness and explainability
-                            tools. . Highlight the tech stack or your role.</p>
-                        <a href="#" target="_blank" class="portfolio-link">View Project</a>
+                </a>
+                <a href="#" target="_blank" class="portfolio-link-card">
+                    <div class="portfolio-card">
+                        <img src="images/fraud_detector.png" alt="Fraud detection system">
+                        <div class="portfolio-info">
+                            <h3>Bank Fraud Detection System </h3>
+                            <p>Spearheaded a team of 11 in crafting a
+                                cutting-edge Hybrid Machine Learning model,
+                                integrating both supervised and unsupervised
+                                techniques, enhanced with fairness and explainability
+                                tools. . Highlight the tech stack or your role.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-card">
-                    <img src="images/project3.jpg" alt="customer support ticket classifier">
-                    <div class="portfolio-info">
-                        <h3>ClassifAI</h3>
-                        <p>Developed customer support ticket classifier
+                </a>
+                <a href="#" target="_blank" class="portfolio-link-card">
+                    <div class="portfolio-card">
+                        <img src="images/classifai.png" alt="customer support ticket classifier">
+                        <div class="portfolio-info">
+                            <h3>ClassifAI</h3>
+                            <p>Developed customer support ticket classifier
 Led a team to design and deliver a 6 week NLP project for customer support ticket classification.
-Built baseline models and fine tuned DistilBERT, improving performance over traditional approaches.
-Integrated MLflow for experiment tracking and reproducibility.
-Deployed the model with a Gradio demo and FastAPI API, making it accessible to end users.
 </p>
-                        <a href="#" target="_blank" class="portfolio-link">View Project</a>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-card">
-                    <img src="images/project3.jpg" alt="Movie Recommender">
-                    <div class="portfolio-info">
-                        <h3>Eliflix</h3>
-                        <p>A powerful movie recommendation engine that uses content-based filtering with machine learning to suggest movies based on genres, keywords, cast, and directors.
+                </a>
+                <a href="#" target="_blank" class="portfolio-link-card">
+                    <div class="portfolio-card">
+                        <img src="images/eliflix.png" alt="Movie Recommender">
+                        <div class="portfolio-info">
+                            <h3>Eliflix</h3>
+                            <p>A powerful movie recommendation engine that uses content-based filtering with machine learning to suggest movies based on genres, keywords, cast, and directors.
 
 </p>
-                        <a href="#" target="_blank" class="portfolio-link">View Project</a>
+                        </div>
                     </div>
-                </div>
+                </a>
                 <!-- Add more portfolio-card blocks as needed -->
             </div>
         </section>
