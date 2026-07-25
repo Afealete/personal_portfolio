@@ -39,7 +39,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05);
 }
-}
+
 
 [data-theme="light"] .section {
     background: var(--bg-secondary);
@@ -66,6 +66,24 @@ body {
     color: var(--text-primary); /* Light grey text */
     font-family: 'Poppins', Arial, sans-serif;
     box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--text-accent);
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 0.1em;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--bg-accent);
+    outline-offset: 4px;
 }
 
 /* Navbar Base Styles */
@@ -1203,11 +1221,17 @@ body {
     display: block;
     color: inherit;
     text-decoration: none;
+    border-radius: 1.2rem;
 }
 
-.portfolio-card:hover {
+.portfolio-link-card:hover .portfolio-card,
+.portfolio-link-card:focus-visible .portfolio-card {
     transform: translateY(-8px) scale(1.03);
     box-shadow: 0 8px 32px rgba(255, 140, 0, 0.3);
+}
+
+.portfolio-link-card:focus-visible {
+    outline-offset: 6px;
 }
 
 @media (max-width: 768px) {
@@ -1220,7 +1244,7 @@ body {
     .portfolio-card {
         border-radius: 0.9rem;
     }
-    .portfolio-card:hover {
+    .portfolio-link-card:hover .portfolio-card {
         transform: translateY(-4px) scale(1.01);
     }
 }
@@ -1330,6 +1354,338 @@ body {
 
 @media (max-width: 480px) {
     .portfolio-link {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* --- certificate Section Styles --- */
+.section.certificate {
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    border-radius: 2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    /* fluid padding with clamp for better scaling */
+    padding: clamp(2rem, 5vw, 4rem) clamp(2rem, 6vw, 5rem);
+    /* limit width on very large screens while still allowing shrinkage on small ones */
+    max-width: clamp(600px, 90vw, 1200px);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .section.certificate {
+        padding: 2rem 1.5rem;
+        border-radius: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section.certificate {
+        padding: 1.5rem 1rem;
+    }
+}
+
+.section.certificate h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--bg-accent);
+    margin: 0;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.certificate-heading {
+    max-width: 720px;
+    margin-bottom: clamp(1.75rem, 4vw, 3rem);
+    text-align: center;
+}
+
+.certificate-heading .section-kicker {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.certificate-heading p {
+    max-width: 620px;
+    margin: 0.75rem auto 0;
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .section.certificate h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section.certificate h1 {
+        font-size: 1.5rem;
+    }
+}
+
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 2.5rem);
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .certificate-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .certificate-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .certificate-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-grid {
+        grid-template-columns: 1fr; /* single card per row on small screens */
+        gap: 1rem;
+    }
+
+}
+
+.certificate-card {
+    background: var(--bg-primary);
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* make the entire card clickable by wrapping it in a link */
+.certificate-link-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 1.2rem;
+}
+
+.certificate-link-card:hover .certificate-card,
+.certificate-link-card:focus-visible .certificate-card {
+    transform: translateY(-8px) scale(1.03);
+    border-color: rgba(255, 140, 0, 0.75);
+    box-shadow: 0 8px 32px rgba(255, 140, 0, 0.3);
+}
+
+.certificate-link-card:focus-visible {
+    outline-offset: 6px;
+}
+
+@media (max-width: 768px) {
+    .certificate-card {
+        border-radius: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-card {
+        border-radius: 0.9rem;
+    }
+    .certificate-link-card:hover .certificate-card {
+        transform: translateY(-4px) scale(1.01);
+    }
+}
+
+.certificate-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: contain; /* show whole image without cropping */
+    padding: 0.65rem;
+    background: linear-gradient(145deg, rgba(255, 140, 0, 0.18), rgba(255, 107, 53, 0.05));
+    border-bottom: 1px solid var(--border);
+}
+
+/* ensure cards allow the image to flex when needed */
+.certificate-card {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.certificate-info {
+    /* positioned below image, occupies ~10% of card height */
+    background: var(--bg-primary);
+    padding: 1rem 1.1rem 1.15rem;
+    color: var(--text-primary);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.certificate-info h3 {
+    color: var(--text-primary);
+    font-size: 1.15rem;
+    margin: 0.3rem 0 0.8rem;
+    font-weight: 700;
+}
+
+.certificate-type {
+    color: var(--bg-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.certificate-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: auto;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+.certificate-action i {
+    color: var(--bg-accent);
+    font-size: 1rem;
+    transition: transform 0.25s ease;
+}
+
+.certificate-link-card:hover .certificate-action,
+.certificate-link-card:focus-visible .certificate-action {
+    color: var(--bg-accent);
+}
+
+.certificate-link-card:hover .certificate-action i,
+.certificate-link-card:focus-visible .certificate-action i {
+    transform: translate(2px, -2px);
+}
+
+.about-info > li {
+    display: inline-block;
+    margin: 0.35rem 0.35rem 0.35rem 0;
+    list-style: none;
+}
+
+.about-info > li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 44px;
+    padding: 0.65rem 0.9rem;
+    color: var(--text-primary);
+    background: rgba(255, 140, 0, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.25s ease, color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.about-info > li a:hover,
+.about-info > li a:focus-visible {
+    color: var(--bg-primary);
+    background: var(--bg-accent);
+    border-color: var(--bg-accent);
+    transform: translateY(-2px);
+}
+
+.certificate-info p {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    margin-bottom: 1.2rem;
+    flex: 1;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .certificate-info {
+        padding: 1rem 0.9rem 1.2rem 0.9rem;
+    }
+    .certificate-info h3 {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    .certificate-info p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-info {
+        padding: 0.9rem 0.8rem 1rem 0.8rem;
+    }
+    .certificate-info h3 {
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+    }
+    .certificate-info p {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+/* certificate link */
+.certificate-link {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--bg-accent) 60%, #ff6b35 100%);
+    color: var(--bg-primary);
+    font-weight: 600;
+    padding: 0.5rem 1.3rem;
+    border-radius: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.certificate-link:hover {
+    background: linear-gradient(90deg, #ff6b35, var(--bg-accent));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(255, 140, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .certificate-link {
+        padding: 0.45rem 1.1rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-link {
         padding: 0.4rem 0.9rem;
         font-size: 0.9rem;
     }
@@ -1540,13 +1896,25 @@ body {
 }
 
 .contact-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
     color: var(--bg-accent);
     font-size: 1.5rem;
-    transition: color 0.2s;
+    background: rgba(255, 140, 0, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s, transform 0.2s;
 }
 
-.contact-social a:hover {
-    color: var(--bg-accent);
+.contact-social a:hover,
+.contact-social a:focus-visible {
+    color: var(--bg-primary);
+    background: var(--bg-accent);
+    transform: translateY(-2px);
 }
 
 /* --- About Section Styles --- */
@@ -2158,13 +2526,24 @@ i {
 }
 
 .social-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.6rem 0.8rem;
     color: var(--text-primary);
-    font-size: 1.5rem;
-    transition: color 0.2s;
+    font-size: 1rem;
+    background: rgba(255, 140, 0, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s, transform 0.2s;
 }
 
-.social-links a:hover {
-    color: var(--bg-accent);
+.social-links a:hover,
+.social-links a:focus-visible {
+    color: var(--bg-primary);
+    background: var(--bg-accent);
+    transform: translateY(-2px);
 }
 
 .contact-info li {
